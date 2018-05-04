@@ -13,6 +13,8 @@ from thermodynamic_functions cimport *
 import math as mt
 from libc.math cimport sqrt, log, fabs,atan, exp, fmax
 
+from CasesGCMHardForcing cimport GCMHardForcing
+
 def CasesFactory(namelist, paramlist):
     if namelist['meta']['casename'] == 'Soares':
         return Soares(paramlist)
@@ -30,6 +32,10 @@ def CasesFactory(namelist, paramlist):
         return GATE_III(paramlist)
     elif namelist['meta']['casename'] == 'DYCOMS_RF01':
         return DYCOMS_RF01(paramlist)
+    elif namelist['meta']['casename'] == 'GCMHardForcing':
+        return GCMHardForcing(namelist, paramlist)
+
+
 
     else:
         print('case not recognized')
